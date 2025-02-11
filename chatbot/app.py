@@ -40,7 +40,7 @@ agent = initialize_agent(
     llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True,
-    max_iterations=2,
+    max_iterations=1,
     return_intermediate_steps=True,
     handle_parsing_errors=True,
     memory=None,  # ✅ Ensure NO memory is retained

@@ -15,8 +15,5 @@ def run_fibonacci_tool(n):
 fibonacci_tool = Tool(
     name="Fibonacci Calculator",
     func=run_fibonacci_tool,
-    description=generate_tool_description(
-        name="Fibonacci Calculator",
-        input_format="<number>",
-    )
+    description=f"Call this tool if a Fibonacci of number has to be computed. Use 'Action: Fibonacci Calculator' and pass the input as 'Action Input: <number>'.\n"
 )

@@ -15,8 +15,5 @@ def run_factorial_tool(n):
 factorial_tool = Tool(
     name="Factorial Calculator",
     func=run_factorial_tool,
-    description=generate_tool_description(
-        name="Factorial Calculator",
-        input_format="<number>",
-    )
+    description=f"Call this tool if a factorial of number has to be computed. Use 'Action: Factorial Calculator' and pass the input as 'Action Input: <number>'.\n"
 )
