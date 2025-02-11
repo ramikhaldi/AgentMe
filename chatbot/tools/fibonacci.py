@@ -18,7 +18,5 @@ fibonacci_tool = Tool(
     description=generate_tool_description(
         name="Fibonacci Calculator",
         input_format="<number>",
-        example_input="Calculate Fibonacci of 10",
-        example_output="55"
     )
 )

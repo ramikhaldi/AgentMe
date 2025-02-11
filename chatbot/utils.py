@@ -25,7 +25,7 @@ def check_custom_tools():
         sys.exit(1)
 
 
-def generate_tool_description(name, input_format, example_input, example_output):
+def generate_tool_description(name, input_format):
     """
     Dynamically generates a standardized tool description for LangChain.
     

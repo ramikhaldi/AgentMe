@@ -5,6 +5,7 @@ from langchain_community.llms import Ollama
 from langchain.agents import initialize_agent, AgentType
 from tools import discover_tools  # ✅ Auto-discover tools
 from dotenv import load_dotenv
+from rapidfuzz import process
 
 # ✅ Ensure Python can find `tools`
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -41,7 +42,9 @@ agent = initialize_agent(
     verbose=True,
     max_iterations=2,
     return_intermediate_steps=True,
-    handle_parsing_errors=True
+    handle_parsing_errors=True,
+    memory=None,  # ✅ Ensure NO memory is retained
+    early_stopping_method="generate"  # ✅ Stop after generating a final answer
 )
 
 @app.route("/chat", methods=["POST"])
@@ -51,6 +54,9 @@ def chat():
     print(f"\n📥 [USER QUESTION]: {user_input}")
 
     try:
+        # ✅ Reset memory to prevent state retention
+        agent.memory = None
+
         # ✅ Step 1: Augment intent check with tool descriptions
         intent_prompt = (
             f"Below are the available tools:\n"
@@ -71,32 +77,35 @@ def chat():
         response = agent.invoke({"input": user_input})
         print(f"response: {response}")
 
-        found_final_answer = False
         for i, step in enumerate(response["intermediate_steps"]):
-            action, observation = step  # Each step is (AgentAction, Observation)
+            action, observation = step
 
-            # ✅ Print all intermediate steps for debugging
             print(f"\n🔄 [INTERMEDIATE STEP {i+1}]")
             print(f"🛠️ Action: {action.tool}")
             print(f"📥 Input: {action.tool_input}")
             print(f"👀 Observation: {observation}")
 
-            # ✅ Step 3: Reject execution if tool does not exist
-            if action.tool not in tool_names:
-                print(f"🚨 [SECURITY]: Unrecognized tool `{action.tool}` detected! Aborting execution.")
+            # ✅ Find the best tool match (case-insensitive + semantic similarity)
+            best_match, score, _ = process.extractOne(action.tool, tool_names)
+
+            if score < 80:
+                print(f"🚨 [SECURITY]: Unrecognized tool `{action.tool}` detected! Closest match `{best_match}` (score: {score}). Aborting execution.")
                 return jsonify({"response": "I'm not sure what you're asking. Can you clarify?"})
 
-            # ✅ Step 4: Return final result if found
+            print(f"✅ [MATCH]: Using `{best_match}` instead of `{action.tool}` (Similarity: {score}%)")
+            action.tool = best_match
+
+            # ✅ Step 3: Stop execution **immediately** after finding "Final Answer"
             if "Final Answer:" in observation:
                 final_result = observation.replace("Final Answer:", "").strip()
-                print(f"\n🎯 [FINAL RESULT (found in intermediate steps)]: {final_result}")
-                found_final_answer = True
+                print(f"\n🎯 [FINAL RESULT]: {final_result}")
+
+                # 🔥 **Force agent to stop execution early**
                 return jsonify({"response": final_result})
 
-        # ✅ Step 5: If no final answer was found, print a warning and return output instead
-        if not found_final_answer:
-            print(f"\n⚠️ [WARNING]: No 'Final Answer' found in intermediate steps.")
-            return jsonify({"response": response["output"]})
+        # ✅ Step 4: If no final answer was found, return raw output
+        print(f"\n⚠️ [WARNING]: No 'Final Answer' found in intermediate steps.")
+        return jsonify({"response": response["output"]})
 
     except Exception as e:
         print(f"\n❌ [ERROR]: {str(e)}")

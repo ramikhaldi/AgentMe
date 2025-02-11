@@ -19,8 +19,6 @@ compute_expression_tool = Tool(
     func=run_compute_expression_tool,
     description=generate_tool_description(
         name="Compute Expression",
-        input_format="<a> <b> <c>",
-        example_input="Compute 10 - 3 * 2",
-        example_output="4"
+        input_format="<a> <b> <c>"
     )
 )

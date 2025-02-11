@@ -18,7 +18,5 @@ factorial_tool = Tool(
     description=generate_tool_description(
         name="Factorial Calculator",
         input_format="<number>",
-        example_input="Calculate Factorial of 5",
-        example_output="120"
     )
 )
