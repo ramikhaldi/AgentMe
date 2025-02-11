@@ -5,7 +5,7 @@ networks:
 services:
   chatbot:
     build: chatbot
-    container_name: ttyd_chatbot
+    container_name: chatbot
     ports:
       - "${TTYD_API_PORT}:${TTYD_API_PORT}"
     volumes:

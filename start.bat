@@ -55,8 +55,8 @@ if exist .env (
     echo [WARN] No .env file found! Using default settings from docker-compose.yml.
 )
 
-:: Check if `custom_logic/` directory exists and is NOT empty
-set DIR=chatbot/custom_logic
+:: Check if `tools/` directory exists and is NOT empty
+set DIR=chatbot/tools
 if not exist "%DIR%" (
     echo ERROR: "%DIR%" directory is missing. Please create it and add your code before running the application!
     exit /b 1

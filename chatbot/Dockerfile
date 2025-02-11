@@ -7,9 +7,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
-COPY ../custom_logic custom_logic
+COPY ../tools tools
 
-# ✅ Set PYTHONPATH so Python recognizes custom_logic as a module
+# ✅ Set PYTHONPATH so Python recognizes tools as a module
 ENV PYTHONPATH="/app"
 
 # Expose chatbot API port

@@ -1,5 +1,5 @@
 from langchain_core.tools import Tool
-from custom_logic.utils import generate_tool_description 
+from utils import generate_tool_description
 
 def fibonacci(n):
     """Calculates the Fibonacci sequence for a given number."""
@@ -12,7 +12,6 @@ def run_fibonacci_tool(n):
     result = fibonacci(int(n))
     return f"Final Answer: {result}"
 
-# ✅ Use the generic function to create the tool description
 fibonacci_tool = Tool(
     name="Fibonacci Calculator",
     func=run_fibonacci_tool,

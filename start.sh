@@ -55,8 +55,8 @@ else
     fi
 fi
 
-# ✅ Check if `custom_logic/` directory exists & is NOT empty
-DIR="chatbot/custom_logic"
+# ✅ Check if `tools/` directory exists & is NOT empty
+DIR="chatbot/tools"
 if [ ! -d "$DIR" ]; then
     echo -e "${RED}❌ ERROR: '$DIR' directory is missing! Please create it and add your code before running the application!${NC}"
     exit 1

@@ -3,12 +3,10 @@ import os
 from flask import Flask, request, jsonify
 from langchain_community.llms import Ollama
 from langchain.agents import initialize_agent, AgentType
-from langchain_core.tools import Tool
+from tools import discover_tools  # ✅ Load all tools automatically
 from dotenv import load_dotenv
-from custom_logic.tools import fibonacci_tool  # ✅ Import manually defined tool
-from custom_logic.utils import check_custom_tools
 
-# ✅ Ensure Python can find `custom_logic`
+# ✅ Ensure Python can find `tools`
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Load environment variables
@@ -21,18 +19,18 @@ app = Flask(__name__)
 # ✅ 1️⃣ Connect to Ollama (running in Docker network)
 llm = Ollama(model=MODEL_NAME, base_url="http://ollama:11434")
 
-# ✅ 2️⃣ Manually register tools
-custom_tools = check_custom_tools()
+# ✅ 2️⃣ Dynamically load all tools
+custom_tools = discover_tools()
 
-# ✅ 3️⃣ Use `initialize_agent` and ensure it stops after valid response
+# ✅ 3️⃣ Initialize the agent
 agent = initialize_agent(
     custom_tools,
     llm,
-    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,  # ✅ Standard tool-using agent
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
     verbose=True,
-    max_iterations=2,  # ✅ Prevent unnecessary looping
-    return_intermediate_steps=True,  # ✅ Ensure agent recognizes step completion
-    handle_parsing_errors=True  # ✅ Prevents unexpected output errors
+    max_iterations=2,
+    return_intermediate_steps=True,
+    handle_parsing_errors=True
 )
 
 @app.route("/chat", methods=["POST"])
@@ -73,5 +71,5 @@ def chat():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    print("🚀 Chatbot is starting...")
+    print("🚀 AgentMe Server is starting...")
     app.run(host="0.0.0.0", port=int(TTYD_API_PORT))
