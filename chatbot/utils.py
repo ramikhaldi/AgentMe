@@ -31,7 +31,7 @@ def generate_tool_description(name, input_format, example_input, example_output)
     
     Args:
     - name: The tool name (string).
-    - input_format: Expected input format (string).
+    - input_format: Expected input format (string), e.g., "<a> <b> <c>"
     - example_input: Example input value (string).
     - example_output: Example output value (string).
     
