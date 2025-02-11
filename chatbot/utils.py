@@ -32,20 +32,10 @@ def generate_tool_description(name, input_format, example_input, example_output)
     Args:
     - name: The tool name (string).
     - input_format: Expected input format (string), e.g., "<a> <b> <c>"
-    - example_input: Example input value (string).
-    - example_output: Example output value (string).
     
     Returns:
     - A formatted description string.
     """
     return (
-        f"Use this tool to perform a specific task.\n"
         f"Call this tool using 'Action: {name}' and pass the input as 'Action Input: {input_format}'.\n"
-        f"Example usage:\n"
-        f"Question: {example_input}\n"
-        f"Thought: I should use {name}.\n"
-        f"Action: {name}\n"
-        f"Action Input: {input_format}\n"
-        f"Observation: Final Answer: {example_output}\n"
-        f"The agent must stop after seeing 'Final Answer:'."
     )
