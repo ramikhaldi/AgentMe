@@ -1,0 +1,7 @@
+flask
+requests
+langchain
+langchain-community
+langchain-core
+ollama
+python-dotenv  # ✅ Load .env variables
