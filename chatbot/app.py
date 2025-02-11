@@ -6,6 +6,7 @@ from langchain.agents import initialize_agent, AgentType
 from langchain_core.tools import Tool
 from dotenv import load_dotenv
 from custom_logic.tools import fibonacci_tool  # ✅ Import manually defined tool
+from custom_logic.utils import check_custom_tools
 
 # ✅ Ensure Python can find `custom_logic`
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -21,11 +22,11 @@ app = Flask(__name__)
 llm = Ollama(model=MODEL_NAME, base_url="http://ollama:11434")
 
 # ✅ 2️⃣ Manually register tools
-tools = [fibonacci_tool]
+custom_tools = check_custom_tools()
 
 # ✅ 3️⃣ Use `initialize_agent` and ensure it stops after valid response
 agent = initialize_agent(
-    tools,
+    custom_tools,
     llm,
     agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,  # ✅ Standard tool-using agent
     verbose=True,
