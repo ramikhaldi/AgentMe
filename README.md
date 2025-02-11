@@ -2,7 +2,7 @@
 
 🚀 **Empower Your AI Assistant with Custom Logic and Action Execution!** 🚀
 
-AgentMe is an **agentic AI** solution that enables you to **command your local AI Agent to execute predefined actions** using a simple Python interface. Unlike traditional chatbot solutions, AgentMe provides seamless **privacy-focused** interactions—your queries and executions remain within your environment, ensuring **maximum privacy and security**.
+AgentMe is an agentic AI solution that enables you to **command your local AI Agent to execute predefined actions using a usual discussion with your chatbot**. Unlike traditional chatbot solutions, AgentMe provides seamless **privacy-focused** interactions—your queries and executions remain within your environment, ensuring **maximum privacy and security**.
 
 ### 🛡️ **Run Local AI on Your Machine with Full Control**
 
