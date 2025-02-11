@@ -15,4 +15,6 @@ ENV PYTHONPATH="/app"
 # Expose chatbot API port
 EXPOSE ${TTYD_API_PORT}
 
+ENV PYTHONUNBUFFERED=1
+
 CMD ["python", "app.py"]
