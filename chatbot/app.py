@@ -12,10 +12,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Load environment variables
 load_dotenv()
-MODEL_NAME = os.getenv("MODEL_NAME", "llama3")
-TTYD_API_PORT = os.getenv("TTYD_API_PORT", "5000")
-OLLAMA_TEMPERATURE = float(os.getenv("OLLAMA_TEMPERATURE", "0"))  # ✅ Ensure float
-OLLAMA_NUM_CTX = int(os.getenv("OLLAMA_NUM_CTX", "8000"))  # ✅ Ensure integer
+MODEL_NAME = os.getenv("MODEL_NAME")
+AGENTME_API_PORT = os.getenv("AGENTME_API_PORT")
+OLLAMA_TEMPERATURE = float(os.getenv("OLLAMA_TEMPERATURE"))
+OLLAMA_NUM_CTX = int(os.getenv("OLLAMA_NUM_CTX"))
 
 app = Flask(__name__)
 
@@ -113,4 +113,4 @@ def chat():
 
 if __name__ == "__main__":
     print(f"🚀 Chatbot is starting... (Model: {MODEL_NAME}, Temperature: {OLLAMA_TEMPERATURE}, Context: {OLLAMA_NUM_CTX})")
-    app.run(host="0.0.0.0", port=int(TTYD_API_PORT))
+    app.run(host="0.0.0.0", port=int(AGENTME_API_PORT))

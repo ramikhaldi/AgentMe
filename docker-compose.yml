@@ -7,7 +7,7 @@ services:
     build: chatbot
     container_name: chatbot
     ports:
-      - "${TTYD_API_PORT}:${TTYD_API_PORT}"
+      - "${AGENTME_API_PORT}:${AGENTME_API_PORT}"
     volumes:
       - ./instructions.txt:/app/instructions.txt
       - ./my_files:/app/my_files
