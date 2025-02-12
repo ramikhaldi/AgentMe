@@ -31,12 +31,12 @@ With AgentMe, you can integrate your **own logic**, making your AI assistant as 
 - Ensure **WSL 2 backend** is enabled (recommended for performance)
 - Make sure **Linux Containers** are enabled
 
-### 🐧 **For Linux Users**
+### 🐝 **For Linux Users**
 
 - Install **Docker Engine** ([Guide](https://docs.docker.com/engine/install/))
 - Install **Docker Compose** ([Guide](https://docs.docker.com/compose/install/))
 
-## 📦 Installation & Setup
+## 🛀 Installation & Setup
 
 ### 1️⃣ Clone the Repository
 
@@ -67,12 +67,28 @@ $ ./start.sh
 This **automatically performs a comprehensive sanity check**, verifying:
 - ✅ **Docker & Docker Compose**
 - ✅ **NVIDIA GPU support & containerization**
+- 
+If you want AgentMe to **automatically start on boot**, run the installation script:
 
-If any issue is detected, the script will provide **clear guidance on how to fix it**.
+```sh
+$ chmod +x install_service.sh
+$ ./install_service.sh
+```
 
----
+Once installed, you can check the service status:
 
-## ⚙️ Configurable Parameters
+```sh
+$ sudo systemctl status agentme
+```
+
+To **uninstall the service**, run:
+
+```sh
+$ chmod +x uninstall_service.sh
+$ ./uninstall_service.sh
+```
+
+## 🛠️ Configurable Parameters
 
 AgentMe allows fine-tuning via environment variables in the .env file:
 
@@ -137,16 +153,16 @@ This tool will be **automatically discovered** by AgentMe and made available for
 
 ## 🛠️ Development & Contribution
 
-TTYD is **open-source**, and contributions are welcome! 🎉
+AgentMe is **open-source**, and contributions are welcome! 🎉
 
-### 🔨 **Local Development**
+### 💪 **Local Development**
 
 1. Fork & clone the repo.
-2. Modify/extend/Improve.
+2. Modify/extend/improve.
 3. Run, Test, and benchmark.
 4. Submit a pull request. 🚀
 
-## 📜 License
+## 🐝 License
 
 This project is licensed under the **MIT License**.
 
