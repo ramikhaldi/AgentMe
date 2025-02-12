@@ -5,7 +5,7 @@ networks:
 services:
   chatbot:
     build: chatbot
-    container_name: chatbot
+    container_name: agentme_chatbot
     privileged: true
     ports:
       - "${AGENTME_API_PORT}:${AGENTME_API_PORT}"
@@ -24,7 +24,7 @@ services:
 
   ollama:
     image: ollama/ollama:latest  # ✅ Ollama Server
-    container_name: ollama
+    container_name: agentme_ollama
     privileged: true
     restart: always
     volumes:
@@ -37,7 +37,7 @@ services:
 
   ollama_model_runner:
     image: curlimages/curl:latest
-    container_name: ollama_model_runner
+    container_name: agentme_ollama_model_runner
     privileged: true
     restart: "no"
     env_file:
@@ -72,7 +72,7 @@ services:
 
   ollama_check_server:
     image: curlimages/curl:latest
-    container_name: ollama_check_server
+    container_name: agentme_ollama_check_server
     privileged: true
     restart: "no"
     env_file:
