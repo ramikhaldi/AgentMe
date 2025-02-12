@@ -75,8 +75,4 @@ echo -e "${GREEN}✅ '$DIR' directory exists and is not empty.${NC}"
 
 # ✅ Start Services
 echo -e "${YELLOW}🚀 Starting TTYD...${NC}"
-if [ "$GPU_SUPPORT" = "yes" ]; then
-    docker compose --env-file .env up --build --gpus all
-else
-    docker compose --env-file .env up --build
-fi
+docker compose --env-file .env up --build

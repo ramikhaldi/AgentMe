@@ -83,12 +83,8 @@ if %errorlevel% neq 0 (
 
 echo [OK] "%DIR%" directory exists and is not empty.
 
-:: Start Docker Compose with appropriate flags
+:: Start Docker Compose
 echo [LAUNCH] Starting services...
-if "%GPU_SUPPORT%"=="yes" (
-    docker compose --env-file .env up --build --gpus all
-) else (
-    docker compose --env-file .env up --build
-)
+docker compose --env-file .env up --build
 
 exit /b 0
