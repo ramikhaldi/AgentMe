@@ -64,6 +64,14 @@ $ chmod +x start.sh
 $ ./start.sh
 ```
 
+This **automatically performs a comprehensive sanity check**, verifying:
+- ✅ **Docker & Docker Compose**
+- ✅ **NVIDIA GPU support & containerization**
+
+If any issue is detected, the script will provide **clear guidance on how to fix it**.
+
+---
+
 ## ⚙️ Configurable Parameters
 
 AgentMe allows fine-tuning via environment variables in the .env file:
