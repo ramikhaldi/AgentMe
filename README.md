@@ -67,7 +67,7 @@ $ ./start.sh
 This **automatically performs a comprehensive sanity check**, verifying:
 - ✅ **Docker & Docker Compose**
 - ✅ **NVIDIA GPU support & containerization**
-- 
+
 If you want AgentMe to **automatically start on boot**, run the installation script:
 
 ```sh
