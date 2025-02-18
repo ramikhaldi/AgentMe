@@ -106,7 +106,7 @@ AgentMe allows fine-tuning via environment variables in the .env file:
 You can interact with the chatbot via a simple **cURL** request:
 
 ```sh
-curl -v -X POST "http://localhost:5000/chat" \
+curl -v -X POST "http://host.docker.internal:5000/chat" \
      -H "Content-Type: application/json" \
      -d '{"message": "give me fib of 10"}'
 ```
