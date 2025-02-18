@@ -162,10 +162,6 @@ AgentMe is **open-source**, and contributions are welcome! 🎉
 3. Run, Test, and benchmark.
 4. Submit a pull request. 🚀
 
-## 🐝 License
-
-This project is licensed under the **MIT License**.
-
 ---
 
 Enjoy using **AgentMe** and contribute to its development! 🎉
