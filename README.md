@@ -95,7 +95,7 @@ AgentMe allows fine-tuning via environment variables in the .env file:
 | Parameter            | Default Value | Description                                                 |
 | -------------------- | ------------- | ----------------------------------------------------------- |
 | `MODEL_NAME`         | `llama3.2:3b` | Specifies the LLM model used.                               |
-| `AGENTME_API_PORT`   | `5000`        | Port where the chatbot API runs.                            |
+| `AGENTME_API_PORT`   | `6000`        | Port where the chatbot API runs.                            |
 | `OLLAMA_TEMPERATURE` | `0.0`         | Controls randomness in responses (higher is more creative). |
 | `OLLAMA_NUM_CTX`     | `8000`        | Sets the maximum context window size.                       |
 
@@ -106,7 +106,7 @@ AgentMe allows fine-tuning via environment variables in the .env file:
 You can interact with the chatbot via a simple **cURL** request:
 
 ```sh
-curl -v -X POST "http://host.docker.internal:5000/chat" \
+curl -v -X POST "http://host.docker.internal:6000/chat" \
      -H "Content-Type: application/json" \
      -d '{"message": "give me fib of 10"}'
 ```

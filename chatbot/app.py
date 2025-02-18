@@ -30,6 +30,7 @@ llm = Ollama(
 # ✅ 2️⃣ Discover and load all available tools
 custom_tools = discover_tools()
 tool_names = {tool.name for tool in custom_tools}  # ✅ Store tool names for quick validation
+print(f"tool_names: {tool_names}")
 
 # ✅ 3️⃣ Prepare tool descriptions for better LLM understanding
 tool_descriptions = "\n".join([f"- {tool.name}: {tool.description}" for tool in custom_tools])
