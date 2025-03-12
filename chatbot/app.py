@@ -72,7 +72,7 @@ def chat():
 
         if "No" in intent_check:
             print(f"\n🚨 [SECURITY]: User intent is unclear. Aborting execution.")
-            return jsonify({"response": "I'm not sure what you're asking. Can you clarify?"})
+            return jsonify({"response": ""})
 
         # ✅ Step 2: Invoke the agent
         response = agent.invoke({"input": user_input})
@@ -91,7 +91,7 @@ def chat():
 
             if score < 80:
                 print(f"🚨 [SECURITY]: Unrecognized tool `{action.tool}` detected! Closest match `{best_match}` (score: {score}). Aborting execution.")
-                return jsonify({"response": "I'm not sure what you're asking. Can you clarify?"})
+                return jsonify({"response": ""})
 
             print(f"✅ [MATCH]: Using `{best_match}` instead of `{action.tool}` (Similarity: {score}%)")
             action.tool = best_match
